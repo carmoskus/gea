@@ -1,0 +1,33 @@
+body {
+}
+
+.runGroups {
+	margin-bottom: 20px;
+}
+
+.runGroups tr:first-child {
+	font-weight: bold;
+}
+
+.runGroups td {
+	padding: 5px 20px;
+}
+
+.groupDiv {
+	width: 200px;
+	float: left;
+	margin-right: 50px;
+	border-right: 1px solid black;
+	margin-bottom: 40px;
+}
+
+.groupDiv h4 {
+	margin: 5px;
+}
+
+.runReactions {
+}
+
+.runReactions td {
+	padding: 3px 15px;
+}

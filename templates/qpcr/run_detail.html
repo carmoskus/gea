@@ -1,0 +1,52 @@
+{% extends "qpcr/basic.html" %}
+{% block title %}Run {{ run.id }} Detail{% endblock %}
+{% block content %}
+
+<h1>{{ run.name }}</h1>
+
+{% for name,group in run.get_average.groups.iteritems %}
+	<div class="groupDiv">
+	<h4>{{ name|join:""|upper }}</h4>
+	<table class="runReactions">
+		<tr><td>Ct1</td><td>Ct2</td><td>dCt</td></tr>
+	{% for pair in group %}
+		<tr>
+			<td>{{ pair.reaction1.ct }}</td>
+			<td>{{ pair.reaction2.ct }}</td>
+			<td>{{ pair.dCt }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+	</div>
+{% endfor %}
+
+<h3 style="clear: both;">Average Ct's</h3>
+<table class="runGroups">
+{% for row in run.get_average.groups_by_rows %}
+	<tr>
+	{% for col in row %}
+		<td>{% firstof col.mean col %}</td>
+	{% endfor %}
+	</tr>
+{% endfor %}
+</table>
+
+<h3>Other reactions</h3>
+{% for other in run.get_average.others %}
+	<h5>{{ other }}</h5>
+{% endfor %}
+
+{% comment %}
+<table>
+<tr><th>Well Name</th> <th>Ct Value</th></tr>
+{% for reaction in run.reaction_set.all %}
+	<tr><td>{{ reaction.name }}</td> <td>{{ reaction.ct }}</td></tr>
+{% endfor %}
+</table>
+
+{% for info in run.get_average.reaction_info %}
+	<h5>{{ info }}</h5>
+{% endfor %}
+{% endcomment %}
+
+{% endblock %}

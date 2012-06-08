@@ -1,0 +1,8 @@
+{% extends "qpcr/basic.html" %}
+{% block content %}
+
+{% for run in runs %}
+<h2><a href="{{ run.get_absolute_url }}">{{ run }} - {{ run.id }} ({{ run.reaction_set.count }})</a></h2>
+{% endfor %}
+
+{% endblock %}
