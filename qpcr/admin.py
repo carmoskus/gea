@@ -1,4 +1,4 @@
-from qpcr.models import SampleSet, Sample
+from qpcr.models import SampleSet, Sample, Experimenter, Reaction, Run
 from django.contrib import admin
 
 #class SampleInline(admin.StackedInline):
@@ -11,4 +11,15 @@ class SampleSetAdmin(admin.ModelAdmin):
 
 admin.site.register(SampleSet, SampleSetAdmin)
 admin.site.register(Sample)
+admin.site.register(Experimenter)
+
+class ReactionInline(admin.TabularInline):
+	model = Reaction
+	extra=8
+
+class RunAdmin(admin.ModelAdmin):
+	inlines = [ReactionInline]
+
+#admin.site.register(Reaction)
+admin.site.register(Run, RunAdmin)
 
